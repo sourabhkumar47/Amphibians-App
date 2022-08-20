@@ -32,7 +32,7 @@ private val moshi = Moshi.Builder()
     .build()
 
 // TODO: Build a Retrofit object with the Moshi converter
-private val retorfit = Retrofit.Builder()
+private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
     .build()
 
@@ -45,6 +45,6 @@ interface AmphibianApiService {
 // TODO: Create an object that provides a lazy-initialized retrofit service
 object AmphibianApi {
     val retrofitServiceApi: AmphibianApiService by lazy {
-        retorfit.create(AmphibianApiService::class.java)
+        retrofit.create(AmphibianApiService::class.java)
     }
 }
