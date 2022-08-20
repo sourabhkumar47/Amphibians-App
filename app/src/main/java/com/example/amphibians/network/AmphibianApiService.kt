@@ -27,24 +27,25 @@ private const val BASE_URL =
 
 // TODO: Build the Moshi object with Kotlin adapter factory that Retrofit
 //  will be using to parse JSON
-private val moshi = Moshi.Builder()
+private val moshi: Moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
 // TODO: Build a Retrofit object with the Moshi converter
-private val retrofit = Retrofit.Builder()
+private val retrofit: Retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
+    .baseUrl(BASE_URL)
     .build()
 
 interface AmphibianApiService {
     // TODO: Declare a suspended function to get the list of amphibians
-    @GET("list")
-    suspend fun getList(): List<Amphibian>
+    @GET("android-basics-kotlin-unit-4-pathway-2-project-api.json")
+    suspend fun getAmphibian(): List<Amphibian>
 }
 
 // TODO: Create an object that provides a lazy-initialized retrofit service
 object AmphibianApi {
-    val retrofitServiceApi: AmphibianApiService by lazy {
+    val retrofitService: AmphibianApiService by lazy {
         retrofit.create(AmphibianApiService::class.java)
     }
 }

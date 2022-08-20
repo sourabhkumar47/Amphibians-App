@@ -50,7 +50,7 @@ class AmphibianViewModel : ViewModel() {
         _status.value = AmphibianApiStatus.LOADING
         viewModelScope.launch {
             try {
-                _amphibians.value = AmphibianApi.retrofitServiceApi.getList()
+                _amphibians.value = AmphibianApi.retrofitService.getAmphibian()
                 _status.value = AmphibianApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = AmphibianApiStatus.ERROR
@@ -61,6 +61,6 @@ class AmphibianViewModel : ViewModel() {
 
     fun onAmphibianClicked(amphibian: Amphibian) {
         // TODO: Set the amphibian object
-
+        _amphibian.value = amphibian
     }
 }
